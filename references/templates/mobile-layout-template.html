@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>移动端线框模板</title>
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --line: #222;
+      --muted: #666;
+      --panel: #fff;
+      --phone-w: 390px;
+      --phone-min-h: 844px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: #111; font-family: "PingFang SC", "Noto Sans SC", sans-serif; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; gap: 12px; }
+    .preview-head h1 { margin: 0 0 6px; font-size: 20px; }
+    .preview-head p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .page-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tab { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 8px 10px; font-size: 12px; cursor: pointer; }
+    .tab.active { background: #222; color: #fff; }
+    .page-canvas { flex: 1; min-height: 0; padding-top: 12px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .cards { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+    .page-card { width: min(100%, calc(var(--phone-w) + 8px)); }
+    .phone { width: min(100%, var(--phone-w)); border: 2px solid var(--line); border-radius: 24px; padding: 14px; min-height: var(--phone-min-h); background: #fff; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+    .phone-head { margin: -14px -14px 0; border-bottom: 2px solid var(--line); padding: 10px 12px; font-size: 14px; font-weight: 700; background: #fafafa; }
+    .block { border: 1px dashed var(--line); border-radius: 10px; padding: 10px; }
+    .block h3 { margin: 0 0 6px; font-size: 14px; }
+    .line { height: 10px; border: 1px solid #333; margin: 6px 0; border-radius: 4px; background: #f1f1f1; }
+    .line.s { width: 40%; } .line.m { width: 65%; } .line.l { width: 90%; }
+    .img { border: 1px solid #333; height: 90px; border-radius: 6px; display: grid; place-items: center; font-size: 12px; color: #444; background: #f9f9f9; }
+    .icon { width: 16px; height: 16px; border: 1px solid #333; border-radius: 4px; display: inline-grid; place-items: center; font-size: 10px; }
+    .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .btn { border: 1px solid #222; border-radius: 8px; padding: 8px; text-align: center; font-size: 12px; font-weight: 600; background: #fff; }
+    .btn.primary { background: #222; color: #fff; }
+    .note-badge { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border: 1px solid #222; border-radius: 999px; font-size: 10px; margin-left: 4px; }
+    .annotation-row { padding-top: 8px; border-top: 1px dashed #999; }
+    .annotation-row h3 { margin: 0 0 6px; font-size: 14px; }
+    .annotation-row ol { margin: 0; padding-left: 20px; color: #444; font-size: 13px; line-height: 1.7; }
+    .panel-notes { display: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="preview-head">
+      <h1>移动端线框模板</h1>
+      <p>四行结构：标题说明、页面Tab、页面展示、当前页注释。语义优先写注释。</p>
+    </header>
+
+    <nav class="page-tabs" id="tabs">
+      <button class="tab active" data-tab="page-a">页面A</button>
+      <button class="tab" data-tab="page-b">页面B</button>
+    </nav>
+
+    <main class="page-canvas">
+      <section class="tab-panel active" data-panel="page-a">
+        <div class="cards">
+          <article class="page-card">
+            <div class="phone">
+              <div class="phone-head">页面A（默认状态）</div>
+              <div class="block"><h3>区块A</h3><div class="line l"></div><div class="line m"></div></div>
+              <div class="block"><h3>图片区</h3><div class="img">图片占位</div></div>
+              <div class="btn-row"><div class="btn primary">主要按钮 <span class="note-badge">1</span></div><div class="btn">次要按钮</div></div>
+            </div>
+          </article>
+
+          <article class="page-card">
+            <div class="phone">
+              <div class="phone-head">页面A（结果弹窗状态）</div>
+              <div class="block"><h3>弹窗占位</h3><div class="line l"></div><div class="line m"></div></div>
+            </div>
+          </article>
+        </div>
+        <ol class="panel-notes">
+          <li>这里写字段语义、规则口径和触发条件，不把语义硬编码到画面组件。</li>
+          <li>点击主要按钮①时的业务约束写在这里。</li>
+        </ol>
+      </section>
+
+      <section class="tab-panel" data-panel="page-b">
+        <div class="cards">
+          <article class="page-card">
+            <div class="phone">
+              <div class="phone-head">页面B</div>
+              <div class="block"><h3>区块B</h3><div class="line l"></div></div>
+              <div class="block"><h3>图标样例 <span class="icon">i</span></h3><div class="line m"></div></div>
+            </div>
+          </article>
+        </div>
+        <ol class="panel-notes">
+          <li>Tab 标题与卡片标题必须同义同词根。</li>
+        </ol>
+      </section>
+    </main>
+
+    <section class="annotation-row">
+      <h3>注释（当前页面）</h3>
+      <ol id="annotation-list"></ol>
+    </section>
+  </div>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    const panels = Array.from(document.querySelectorAll('.tab-panel'));
+    const annotationList = document.getElementById('annotation-list');
+
+    function setNotes(panel) {
+      const notes = panel.querySelector('.panel-notes');
+      annotationList.innerHTML = notes ? notes.innerHTML : '<li>当前页面暂无注释。</li>';
+    }
+
+    function activate(tabName) {
+      tabs.forEach((tab) => tab.classList.toggle('active', tab.dataset.tab === tabName));
+      panels.forEach((panel) => {
+        const isActive = panel.dataset.panel === tabName;
+        panel.classList.toggle('active', isActive);
+        if (isActive) setNotes(panel);
+      });
+    }
+
+    tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab.dataset.tab)));
+    activate('page-a');
+  </script>
+</body>
+</html>

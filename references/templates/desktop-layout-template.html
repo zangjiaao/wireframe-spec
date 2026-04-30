@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>桌面端线框模板</title>
+  <style>
+    :root { --bg: #f4f5f7; --line: #222; --muted: #666; --screen-w: 1120px; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: #111; font-family: "PingFang SC", "Noto Sans SC", sans-serif; }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; gap: 12px; }
+    .preview-head h1 { margin: 0 0 6px; font-size: 20px; }
+    .preview-head p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .page-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tab { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 8px 10px; font-size: 12px; cursor: pointer; }
+    .tab.active { background: #222; color: #fff; }
+    .page-canvas { flex: 1; min-height: 0; padding-top: 12px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .cards { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .page-card { width: min(100%, var(--screen-w)); }
+    .screen { border: 2px solid var(--line); border-radius: 12px; min-height: 700px; overflow: hidden; background: #fff; }
+    .screen-head { border-bottom: 2px solid var(--line); padding: 10px 12px; font-size: 14px; font-weight: 700; background: #fafafa; }
+    .layout { display: grid; grid-template-columns: 110px 1fr; min-height: 654px; }
+    .side { border-right: 1px dashed #222; padding: 8px; display: flex; flex-direction: column; gap: 8px; background: #fcfcfc; }
+    .side-item { border: 1px solid #222; border-radius: 8px; padding: 6px 4px; font-size: 11px; text-align: center; }
+    .main { padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+    .tabs { display: grid; gap: 6px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .subtab { border: 1px solid #222; border-radius: 6px; padding: 6px 4px; text-align: center; font-size: 11px; background: #fff; }
+    .subtab.active { background: #222; color: #fff; }
+    .block { border: 1px dashed #222; border-radius: 8px; padding: 8px; }
+    .block h3 { margin: 0 0 6px; font-size: 13px; }
+    .line { border: 1px solid #333; border-radius: 4px; height: 10px; background: #f1f1f1; margin: 5px 0; }
+    .line.s { width: 35%; } .line.m { width: 62%; } .line.l { width: 92%; }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .table { border: 1px solid #222; border-radius: 6px; overflow: hidden; }
+    .tr { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr; border-bottom: 1px solid #ddd; min-height: 28px; }
+    .tr:last-child { border-bottom: none; }
+    .td { border-right: 1px solid #eee; padding: 6px; font-size: 11px; }
+    .td:last-child { border-right: none; }
+    .btn-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+    .btn { border: 1px solid #222; border-radius: 6px; padding: 6px; text-align: center; font-size: 11px; background: #fff; }
+    .btn.primary { background: #222; color: #fff; }
+    .icon { width: 16px; height: 16px; border: 1px solid #333; border-radius: 4px; display: inline-grid; place-items: center; font-size: 10px; }
+    .chart-area { height: 112px; border: 1px solid #333; border-radius: 6px; background: #f7f7f7; display: grid; place-items: center; font-size: 11px; color: #555; }
+    .annotation-row { padding-top: 8px; border-top: 1px dashed #999; }
+    .annotation-row h3 { margin: 0 0 6px; font-size: 14px; }
+    .annotation-row ol { margin: 0; padding-left: 20px; color: #444; font-size: 13px; line-height: 1.7; }
+    .panel-notes { display: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="preview-head">
+      <h1>桌面端线框模板</h1>
+      <p>统一侧边栏 + 内容区二级Tab。语义优先写注释。</p>
+    </header>
+
+    <nav class="page-tabs" id="tabs">
+      <button class="tab active" data-tab="dashboard">运营看板</button>
+      <button class="tab" data-tab="campaign">活动配置</button>
+    </nav>
+
+    <main class="page-canvas">
+      <section class="tab-panel active" data-panel="dashboard">
+        <div class="cards">
+          <article class="page-card">
+            <div class="screen">
+              <div class="screen-head">运营看板（总览）</div>
+              <div class="layout">
+                <aside class="side">
+                  <div class="side-item">总览看板</div>
+                  <div class="side-item">活动配置</div>
+                  <div class="side-item">奖项配置</div>
+                  <div class="side-item">用户管理</div>
+                  <div class="side-item">抽奖记录</div>
+                  <div class="side-item">风控中心</div>
+                  <div class="side-item">审计日志</div>
+                </aside>
+                <main class="main">
+                  <div class="tabs"><div class="subtab active">核心指标</div><div class="subtab">漏斗分析</div><div class="subtab">趋势分析</div><div class="subtab">实时告警</div><div class="subtab">快捷操作</div></div>
+                  <div class="block"><h3>筛选栏</h3><div class="line l"></div></div>
+                  <div class="row-2"><div class="block"><h3>漏斗图</h3><div class="chart-area">图表绘制区域</div></div><div class="block"><h3>趋势图</h3><div class="chart-area">图表绘制区域</div></div></div>
+                  <div class="block"><h3>表格区 <span class="icon">i</span></h3><div class="table"><div class="tr"><div class="td">列1</div><div class="td">列2</div><div class="td">列3</div><div class="td">列4</div><div class="td">列5</div></div><div class="tr"><div class="td"></div><div class="td"></div><div class="td"></div><div class="td"></div><div class="td"></div></div></div></div>
+                  <div class="btn-row"><div class="btn">次要动作</div><div class="btn">次要动作</div><div class="btn primary">主要动作</div></div>
+                </main>
+              </div>
+            </div>
+          </article>
+        </div>
+        <ol class="panel-notes">
+          <li>图表、规则、字段语义写在注释，不在占位组件中表达最终文案。</li>
+        </ol>
+      </section>
+
+      <section class="tab-panel" data-panel="campaign">
+        <div class="cards">
+          <article class="page-card">
+            <div class="screen">
+              <div class="screen-head">活动配置</div>
+              <div class="layout">
+                <aside class="side"><div class="side-item">总览看板</div><div class="side-item">活动配置</div><div class="side-item">奖项配置</div><div class="side-item">用户管理</div><div class="side-item">抽奖记录</div><div class="side-item">风控中心</div><div class="side-item">审计日志</div></aside>
+                <main class="main">
+                  <div class="tabs"><div class="subtab active">基础信息</div><div class="subtab">活动规则</div><div class="subtab">分享配置</div><div class="subtab">页面入口</div><div class="subtab">文案素材</div></div>
+                  <div class="block"><h3>配置区</h3><div class="line l"></div><div class="line m"></div></div>
+                </main>
+              </div>
+            </div>
+          </article>
+        </div>
+        <ol class="panel-notes">
+          <li>Tab 标题与卡片标题必须同义同词根。</li>
+        </ol>
+      </section>
+    </main>
+
+    <section class="annotation-row">
+      <h3>注释（当前页面）</h3>
+      <ol id="annotation-list"></ol>
+    </section>
+  </div>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll('.tab'));
+    const panels = Array.from(document.querySelectorAll('.tab-panel'));
+    const annotationList = document.getElementById('annotation-list');
+
+    function setNotes(panel) {
+      const notes = panel.querySelector('.panel-notes');
+      annotationList.innerHTML = notes ? notes.innerHTML : '<li>当前页面暂无注释。</li>';
+    }
+
+    function activate(tabName) {
+      tabs.forEach((tab) => tab.classList.toggle('active', tab.dataset.tab === tabName));
+      panels.forEach((panel) => {
+        const isActive = panel.dataset.panel === tabName;
+        panel.classList.toggle('active', isActive);
+        if (isActive) setNotes(panel);
+      });
+    }
+
+    tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab.dataset.tab)));
+    activate('dashboard');
+  </script>
+</body>
+</html>

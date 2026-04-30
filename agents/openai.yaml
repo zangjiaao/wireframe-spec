@@ -1,0 +1,4 @@
+interface:
+  display_name: "Wireframe Spec"
+  short_description: "Standardized wireframe HTML for layout validation"
+  default_prompt: "Use this skill to create low-fidelity wireframe HTML with consistent styles and IA rules for H5 and admin pages."
