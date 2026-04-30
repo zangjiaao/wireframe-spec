@@ -19,6 +19,7 @@
 - 图表占位：`.chart-area`
 - 注释：`.annotation-row`, `.panel-notes`, `.note`, `.caption`
 - 关键动作标识：`.note-badge`
+- 抓取器层：`.wf-highlight`, `.wf-inspector-tip`, `.wf-panel`
 
 ## 3) Semantic Strategy (Comment-First)
 1. 画面只表达布局结构，不表达最终业务文案。
@@ -100,6 +101,22 @@
   font-size: 11px;
   color: #555;
 }
+
+.wf-highlight {
+  position: fixed;
+  z-index: 99998;
+  border: 2px solid #111;
+  background: rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+}
+
+.wf-inspector-tip,
+.wf-panel {
+  position: fixed;
+  z-index: 99999;
+  border: 1px solid #222;
+  background: #fff;
+}
 ```
 
 ## 7) Static Tab Switch Snippet
@@ -142,7 +159,23 @@ function activate(tabName) {
 tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab.dataset.tab)));
 ```
 
-## 8) Output Path and Naming
+## 8) WF Inspector (Element Picker) Snippet
+页面说明文案示例：
+```html
+<p class="inspector-help">
+  元素抓取器：按 <kbd>Shift + I</kbd> 开启选择模式；点击复制当前元素；
+  <kbd>Alt</kbd>+点击复制上一级容器；按 <kbd>Esc</kbd> 退出。
+</p>
+```
+
+行为约定：
+- `Shift+I` 开关选择模式
+- 点击复制当前元素定位块
+- `Alt+点击` 复制上一级可选容器定位块
+- `Esc` 退出
+- 抓取器面板自身必须带 `data-inspector-ignore`
+
+## 9) Output Path and Naming
 - 固定输出目录：`wireframes/`
 - 默认文件：
   - `wireframes/layout-preview.html`
@@ -151,12 +184,12 @@ tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab.dataset.t
   - `layout-preview--{topic}.html`
   - `admin-layout-preview--{topic}.html`
 
-## 9) Delivery Message Template
+## 10) Delivery Message Template
 交付回复固定三段：
 1. 文件路径
 2. 本轮结构变更摘要（结构层）
 3. 结构审阅反馈请求
 
-## 10) Templates
+## 11) Templates
 - `references/templates/mobile-layout-template.html`
 - `references/templates/desktop-layout-template.html`

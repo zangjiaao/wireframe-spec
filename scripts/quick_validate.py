@@ -28,6 +28,7 @@ ALLOWED_FRONTMATTER_KEYS = {
 REQUIRED_FILES = [
     "SKILL.md",
     "README.md",
+    "scripts/quick_validate.py",
     "agents/openai.yaml",
     "references/wireframe-standards.md",
     "references/templates/mobile-layout-template.html",
