@@ -37,5 +37,6 @@
 可使用 quick validate 脚本校验 skill frontmatter 与基本结构：
 
 ```bash
-python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py ~/.codex/skills/wireframe-spec
+cd ~/.codex/skills/wireframe-spec
+python3 scripts/quick_validate.py .
 ```
